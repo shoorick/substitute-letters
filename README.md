@@ -5,6 +5,8 @@ characters from other Unicode ranges — mathematical alphanumeric symbols
 (monospace, script, fraktur, doublestruck, sans-serif and their variants),
 enclosed forms (circled, parenthesized, squared and negated variants),
 fullwidth, and more. For example, `ABC` → `𝙰𝙱𝙲` (monospace) or `𝒜ℬ𝒞` (script).
+The `regional_indicator` style turns two-letter country codes into flag
+emoji: `RU` → 🇷🇺, `US` → 🇺🇸.
 
 Spaces and already non-ASCII text are left unchanged —
 except that the `bold`, `circled`, `doublestruck`, `fullwidth`,
@@ -25,11 +27,11 @@ bug reports and other issues are welcome at
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` and `styles()`
 - `bin/substitute-letters` — CLI wrapper built on `Getopt::Long`
-- 19 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+- 20 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
   `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
   `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
-  `sans_serif`, `sans_serif_bold`, `sans_serif_bold_italic`,
-  `sans_serif_italic`, `script`, `squared`
+  `regional_indicator`, `sans_serif`, `sans_serif_bold`,
+  `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `squared`
 
 ## CLI usage
 

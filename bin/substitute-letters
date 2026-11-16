@@ -69,7 +69,9 @@ are substituted as well (except C<parenthesized> has no glyph for 0).
 The C<fullwidth> style also maps all printable ASCII punctuation to
 its fullwidth form, including C<_>. The styles C<squared>,
 C<negative_circled> and C<negative_squared> only cover uppercase
-letters. Spaces and other characters are never modified.
+letters. The C<regional_indicator> style is caseless and maps letter
+pairs to flag emoji (e.g. C<US> becomes the flag of the United
+States). Spaces and other characters are never modified.
 
 The input may be given as command-line arguments (joined with spaces)
 or piped via standard input.
@@ -98,6 +100,7 @@ Print this help text and exit.
     substitute-letters --style script 'Hello, World!'
     substitute-letters -s fraktur route_id
     echo mkdir folder_name | substitute-letters -s monospace
+    substitute-letters -s regional_indicator 'RU US DE'   # flags
     substitute-letters --list
 
 =head1 SEE ALSO

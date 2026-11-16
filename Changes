@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::UnicodeStyle
 
+0.02  2026-11-16
+    - Add regional_indicator style (U+1F1E6..U+1F1FF, caseless;
+      pairs of letters form flag emoji)
+
 0.01  2026-11-16
     - Initial release
     - Text::UnicodeStyle module with stylize() and styles() API

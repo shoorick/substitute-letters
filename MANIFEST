@@ -18,6 +18,7 @@ lib/Text/UnicodeStyle/Monospace.pm
 lib/Text/UnicodeStyle/NegativeCircled.pm
 lib/Text/UnicodeStyle/NegativeSquared.pm
 lib/Text/UnicodeStyle/Parenthesized.pm
+lib/Text/UnicodeStyle/RegionalIndicator.pm
 lib/Text/UnicodeStyle/SansSerif.pm
 lib/Text/UnicodeStyle/SansSerifBold.pm
 lib/Text/UnicodeStyle/SansSerifBoldItalic.pm

@@ -9,7 +9,7 @@ use Text::UnicodeStyle qw( stylize styles );
 my @STYLES = qw(
     bold bold_fraktur bold_italic bold_script
     circled doublestruck fraktur fullwidth italic monospace
-    negative_circled negative_squared parenthesized
+    negative_circled negative_squared parenthesized regional_indicator
     sans_serif sans_serif_bold sans_serif_bold_italic sans_serif_italic
     script squared
 );
@@ -133,6 +133,16 @@ subtest 'enclosed styles base code points' => sub {
     is stylize('Z', 'squared'),          chr(0x1F149), 'squared Z';
     is stylize('A', 'negative_circled'), chr(0x1F150), 'negative_circled A';
     is stylize('Z', 'negative_squared'), chr(0x1F189), 'negative_squared Z';
+};
+
+subtest 'regional_indicator' => sub {
+    is stylize('A', 'regional_indicator'), chr(0x1F1E6), 'A -> RI A';
+    is stylize('Z', 'regional_indicator'), chr(0x1F1FF), 'Z -> RI Z';
+    is stylize('RU', 'regional_indicator'),
+        chr(0x1F1F7) . chr(0x1F1FA), 'RU flag (uppercase)';
+    is stylize('us', 'regional_indicator'),
+        chr(0x1F1FA) . chr(0x1F1F8), 'us flag (lowercase, caseless)';
+    is stylize('123', 'regional_indicator'), '123', 'digits unchanged';
 };
 
 subtest 'script exceptions' => sub {

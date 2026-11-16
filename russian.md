@@ -5,7 +5,8 @@ Perl-модуль и CLI-утилита для замены латинских �
 (monospace, script, fraktur, doublestruck, sans-serif и их начертания),
 обведённые формы (circled, parenthesized, squared и их инвертированные
 варианты), fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace)
-или `𝒜ℬ𝒞` (script).
+или `𝒜ℬ𝒞` (script). Стиль `regional_indicator` превращает двухбуквенные
+коды стран в флаги-эмодзи: `RU` → 🇷🇺, `US` → 🇺🇸.
 
 Пробелы и прочие не-буквы не изменяются —
 кроме стилей `bold`, `circled`, `doublestruck`, `fullwidth`,
@@ -26,11 +27,11 @@ Perl-модуль и CLI-утилита для замены латинских �
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` и `styles()`
 - `bin/substitute-letters` — CLI-обёртка с `Getopt::Long`
-- 19 стилей: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+- 20 стилей: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
   `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
   `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
-  `sans_serif`, `sans_serif_bold`, `sans_serif_bold_italic`,
-  `sans_serif_italic`, `script`, `squared`
+  `regional_indicator`, `sans_serif`, `sans_serif_bold`,
+  `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `squared`
 
 ## Использование CLI
 

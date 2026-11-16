@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 use Exporter 'import';
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our @EXPORT_OK = qw( styles stylize );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
@@ -22,6 +22,7 @@ my %STYLE_MODS = (
     negative_circled        => 'Text::UnicodeStyle::NegativeCircled',
     negative_squared        => 'Text::UnicodeStyle::NegativeSquared',
     parenthesized           => 'Text::UnicodeStyle::Parenthesized',
+    regional_indicator      => 'Text::UnicodeStyle::RegionalIndicator',
     sans_serif              => 'Text::UnicodeStyle::SansSerif',
     sans_serif_bold         => 'Text::UnicodeStyle::SansSerifBold',
     sans_serif_bold_italic  => 'Text::UnicodeStyle::SansSerifBoldItalic',
@@ -155,6 +156,9 @@ Returns the sorted list of available style names.
 
 =item parenthesized
 
+=item regional_indicator (caseless; pairs form flag emoji,
+e.g. C<US> -> flag of the United States)
+
 =item sans_serif, sans_serif_bold, sans_serif_bold_italic, sans_serif_italic
 
 =item script
@@ -173,7 +177,7 @@ Bug reports and other issues: L<https://github.com/shoorick/substitute-letters/i
 
 =head1 VERSION
 
-This library version is 0.01.
+This library version is 0.02.
 
 =head1 LICENSE
 
