@@ -3,11 +3,15 @@
 A Perl module and CLI utility that replaces Latin letters with lookalike
 characters from other Unicode ranges — mathematical alphanumeric symbols
 (monospace, script, fraktur, doublestruck, sans-serif and their variants),
+enclosed forms (circled, parenthesized, squared and negated variants),
 fullwidth, and more. For example, `ABC` → `𝙰𝙱𝙲` (monospace) or `𝒜ℬ𝒞` (script).
 
-Digits, spaces, `_` and other non-letters are left unchanged —
-except that the `bold`, `doublestruck`, `monospace`, `sans_serif` and
-`sans_serif_bold` styles also substitute digits `0-9`.
+Spaces, `_` and other non-letters are left unchanged —
+except that the `bold`, `circled`, `doublestruck`, `monospace`,
+`parenthesized`, `sans_serif` and `sans_serif_bold` styles also
+substitute digits `0-9` (except `parenthesized` has no glyph for `0`).
+The `squared`, `negative_circled` and `negative_squared` styles only
+cover uppercase letters.
 
 Russian documentation: [russian.md](russian.md)
 
@@ -19,10 +23,11 @@ bug reports and other issues are welcome at
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` and `styles()`
 - `bin/substitute-letters` — CLI wrapper built on `Getopt::Long`
-- 14 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
-  `doublestruck`, `fraktur`, `fullwidth`, `italic`, `monospace`,
+- 19 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+  `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
+  `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
   `sans_serif`, `sans_serif_bold`, `sans_serif_bold_italic`,
-  `sans_serif_italic`, `script`
+  `sans_serif_italic`, `script`, `squared`
 
 ## CLI usage
 

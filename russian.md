@@ -3,11 +3,16 @@
 Perl-модуль и CLI-утилита для замены латинских букв на похожие символы
 из других диапазонов Unicode — математические алфавитные символы
 (monospace, script, fraktur, doublestruck, sans-serif и их начертания),
-fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace) или `𝒜ℬ𝒞` (script).
+обведённые формы (circled, parenthesized, squared и их инвертированные
+варианты), fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace)
+или `𝒜ℬ𝒞` (script).
 
-Цифры, пробелы, `_` и прочие не-буквы не изменяются —
-кроме стилей `bold`, `doublestruck`, `monospace`, `sans_serif` и
-`sans_serif_bold`, в которых также преобразуются цифры `0-9`.
+Пробелы, `_` и прочие не-буквы не изменяются —
+кроме стилей `bold`, `circled`, `doublestruck`, `monospace`,
+`parenthesized`, `sans_serif` и `sans_serif_bold`, в которых также
+преобразуются цифры `0-9` (у `parenthesized` нет глифа для `0`).
+Стили `squared`, `negative_circled` и `negative_squared` покрывают
+только заглавные буквы.
 
 Английская документация: [README.md](README.md)
 
@@ -19,10 +24,11 @@ fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` и `styles()`
 - `bin/substitute-letters` — CLI-обёртка с `Getopt::Long`
-- 14 стилей: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
-  `doublestruck`, `fraktur`, `fullwidth`, `italic`, `monospace`,
+- 19 стилей: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+  `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
+  `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
   `sans_serif`, `sans_serif_bold`, `sans_serif_bold_italic`,
-  `sans_serif_italic`, `script`
+  `sans_serif_italic`, `script`, `squared`
 
 ## Использование CLI
 

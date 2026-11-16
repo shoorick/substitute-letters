@@ -8,9 +8,10 @@ use Text::UnicodeStyle qw( stylize styles );
 
 my @STYLES = qw(
     bold bold_fraktur bold_italic bold_script
-    doublestruck fraktur fullwidth italic monospace
+    circled doublestruck fraktur fullwidth italic monospace
+    negative_circled negative_squared parenthesized
     sans_serif sans_serif_bold sans_serif_bold_italic sans_serif_italic
-    script
+    script squared
 );
 
 subtest 'styles()' => sub {
@@ -35,12 +36,13 @@ subtest 'non-letters are preserved' => sub {
 };
 
 my %DIGIT_STYLES = map { $_ => 1 } qw(
-    bold doublestruck monospace sans_serif sans_serif_bold
+    bold circled doublestruck monospace parenthesized
+    sans_serif sans_serif_bold
 );
 
 subtest 'digits' => sub {
     for my $style (styles()) {
-        my $out = stylize('a0b9', $style);
+        my $out = stylize('a1b9', $style);
         if ($DIGIT_STYLES{$style}) {
             unlike $out, qr/[0-9]/, "$style: digits are substituted";
             is length($out), 4, "$style: length preserved";
@@ -59,15 +61,41 @@ subtest 'digit base code points' => sub {
     is stylize('0', 'sans_serif_bold'), chr(0x1D7EC), 'sans_serif_bold 0';
     is stylize('0', 'monospace'),     chr(0x1D7F6), 'monospace 0';
     is stylize('9', 'monospace'),     chr(0x1D7FF), 'monospace 9';
+    is stylize('1', 'circled'),       chr(0x2460),  'circled 1';
+    is stylize('9', 'circled'),       chr(0x2468),  'circled 9';
+    is stylize('0', 'circled'),       chr(0x24EA),  'circled 0 (separate range)';
+    is stylize('1', 'parenthesized'), chr(0x2474),  'parenthesized 1';
+    is stylize('9', 'parenthesized'), chr(0x247C),  'parenthesized 9';
 };
 
+subtest 'parenthesized has no digit zero' => sub {
+    is stylize('0', 'parenthesized'), '0',
+        'parenthesized 0 stays unchanged (no such glyph)';
+    is stylize('109', 'parenthesized'),
+        chr(0x2474) . '0' . chr(0x247C),
+        'only the zero is left as-is';
+};
+
+my %NO_LOWER = map { $_ => 1 } qw(
+    negative_circled negative_squared squared
+);
+
 subtest 'every style maps the full alphabet to non-ASCII' => sub {
-    my $alpha = join '', 'a' .. 'z', 'A' .. 'Z';
+    my $lower = join '', 'a' .. 'z';
+    my $upper = join '', 'A' .. 'Z';
 
     for my $style (styles()) {
-        my $out = stylize($alpha, $style);
-        is length($out), 52, "$style: length preserved";
-        unlike $out, qr/[A-Za-z]/, "$style: no ASCII letters remain";
+        my $out_l = stylize($lower, $style);
+        my $out_u = stylize($upper, $style);
+        is length($out_u), 26, "$style: uppercase length preserved";
+        unlike $out_u, qr/[A-Z]/, "$style: no ASCII uppercase remains";
+        is length($out_l), 26, "$style: lowercase length preserved";
+        if ($NO_LOWER{$style}) {
+            is $out_l, $lower, "$style: no lowercase range, letters unchanged";
+        }
+        else {
+            unlike $out_l, qr/[a-z]/, "$style: no ASCII lowercase remains";
+        }
     }
 };
 
@@ -78,6 +106,16 @@ subtest 'base code points' => sub {
     is stylize('a', 'fullwidth'),  chr(0xFF41),   'fullwidth a';
     is stylize('A', 'italic'),     chr(0x1D434),  'italic A';
     is stylize('A', 'bold'),       chr(0x1D400),  'bold A';
+};
+
+subtest 'enclosed styles base code points' => sub {
+    is stylize('A', 'circled'),          chr(0x24B6), 'circled A';
+    is stylize('z', 'circled'),          chr(0x24E9), 'circled z';
+    is stylize('A', 'parenthesized'),    chr(0x1F110), 'parenthesized A';
+    is stylize('z', 'parenthesized'),    chr(0x24B5), 'parenthesized z';
+    is stylize('Z', 'squared'),          chr(0x1F149), 'squared Z';
+    is stylize('A', 'negative_circled'), chr(0x1F150), 'negative_circled A';
+    is stylize('Z', 'negative_squared'), chr(0x1F189), 'negative_squared Z';
 };
 
 subtest 'script exceptions' => sub {
