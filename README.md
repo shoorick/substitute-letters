@@ -77,7 +77,7 @@ After installation both `Text::UnicodeStyle` and the
 use lib 'lib';
 use Text::UnicodeStyle qw( stylize styles );
 
-say stylize('something_id', 'monospace');   # 𝚜𝚘𝚖𝚎𝚝𝚑𝚒𝚗𝚐_𝚒𝚍
+say stylize('some_id', 'italic');   # 𝑠𝑜𝑚𝑒_𝑖𝑑
 say join ', ', styles();
 ```
 
