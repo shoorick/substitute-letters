@@ -78,7 +78,7 @@ Print this help text and exit.
 
     substitute-letters --style script 'Hello, World!'
     substitute-letters -s fraktur route_id
-    printf 'route_short_name\n' | substitute-letters -s monospace
+    echo mkdir folder_name | substitute-letters -s monospace
 
 =head1 SEE ALSO
 
