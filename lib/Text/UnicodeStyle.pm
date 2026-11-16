@@ -132,4 +132,8 @@ Project repository: L<https://github.com/shoorick/substitute-letters>
 
 Bug reports and other issues: L<https://github.com/shoorick/substitute-letters/issues>
 
+=head1 LICENSE
+
+L<https://opensource.org/licenses/MIT|MIT>
+
 =cut

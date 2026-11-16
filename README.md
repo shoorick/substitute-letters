@@ -76,3 +76,7 @@ bin/substitute-letters      # CLI
 t/                          # tests (Test::More + prove)
 example.pl                  # example
 ```
+
+## License
+
+[MIT](LICENSE)
