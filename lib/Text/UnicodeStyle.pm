@@ -8,14 +8,20 @@ our @EXPORT_OK = qw( styles stylize );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
 my %STYLE_MODS = (
-    bold         => 'Text::UnicodeStyle::Bold',
-    bold_italic  => 'Text::UnicodeStyle::BoldItalic',
-    doublestruck => 'Text::UnicodeStyle::Doublestruck',
-    fraktur      => 'Text::UnicodeStyle::Fraktur',
-    fullwidth    => 'Text::UnicodeStyle::Fullwidth',
-    italic       => 'Text::UnicodeStyle::Italic',
-    monospace    => 'Text::UnicodeStyle::Monospace',
-    script       => 'Text::UnicodeStyle::Script',
+    bold                    => 'Text::UnicodeStyle::Bold',
+    bold_fraktur            => 'Text::UnicodeStyle::BoldFraktur',
+    bold_italic             => 'Text::UnicodeStyle::BoldItalic',
+    bold_script             => 'Text::UnicodeStyle::BoldScript',
+    doublestruck            => 'Text::UnicodeStyle::Doublestruck',
+    fraktur                 => 'Text::UnicodeStyle::Fraktur',
+    fullwidth               => 'Text::UnicodeStyle::Fullwidth',
+    italic                  => 'Text::UnicodeStyle::Italic',
+    monospace               => 'Text::UnicodeStyle::Monospace',
+    sans_serif              => 'Text::UnicodeStyle::SansSerif',
+    sans_serif_bold         => 'Text::UnicodeStyle::SansSerifBold',
+    sans_serif_bold_italic  => 'Text::UnicodeStyle::SansSerifBoldItalic',
+    sans_serif_italic       => 'Text::UnicodeStyle::SansSerifItalic',
+    script                  => 'Text::UnicodeStyle::Script',
 );
 
 my %TABLES;
