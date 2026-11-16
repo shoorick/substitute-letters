@@ -73,7 +73,7 @@ or piped via standard input.
 
 =item B<-s>, B<--style> I<STYLE>
 
-Style to apply. See L</--list> for available styles.
+Style to apply. See C<--list> for available styles.
 Defaults to C<monospace>.
 
 =item B<-l>, B<--list>
@@ -96,5 +96,9 @@ Print this help text and exit.
 =head1 SEE ALSO
 
 L<Text::UnicodeStyle>
+
+Project repository: L<https://github.com/shoorick/substitute-letters>
+
+Bug reports and other issues: L<https://github.com/shoorick/substitute-letters/issues>
 
 =cut

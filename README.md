@@ -7,7 +7,11 @@ fullwidth, and more. For example, `ABC` → `𝙰𝙱𝙲` (monospace) or `𝒜�
 
 Digits, spaces, `_` and other non-letters are left unchanged.
 
-> Russian documentation: [russian.md](russian.md)
+Russian documentation: [russian.md](russian.md)
+
+Repository: <https://github.com/shoorick/substitute-letters> —
+bug reports and other issues are welcome at
+<https://github.com/shoorick/substitute-letters/issues>
 
 ## Features
 
@@ -26,7 +30,7 @@ bin/substitute-letters --style script 'Hello, World!'
 bin/substitute-letters -s fraktur route_id
 
 # or via stdin
-echo 'route_short_name' | bin/substitute-letters -s monospace
+echo mkdir folder_name | bin/substitute-letters -s monospace
 
 # list available styles
 bin/substitute-letters --list
@@ -44,7 +48,7 @@ Options: `-s/--style STYLE` (default `monospace`), `-l/--list`,
 use lib 'lib';
 use Text::UnicodeStyle qw( stylize styles );
 
-say stylize('route_id', 'monospace');   # 𝐫𝐨𝐮𝐭𝐞_𝐢𝐝
+say stylize('something_id', 'monospace');   # 𝚜𝚘𝚖𝚎𝚝𝚑𝚒𝚗𝚐_𝚒𝚍
 say join ', ', styles();
 ```
 

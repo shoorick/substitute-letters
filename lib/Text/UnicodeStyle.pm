@@ -75,6 +75,8 @@ __END__
 
 =head1 NAME
 
+=encoding utf8
+
 Text::UnicodeStyle - replace Latin letters with lookalike characters
 from other Unicode ranges (mathematical alphanumeric symbols, etc.)
 
@@ -125,5 +127,9 @@ Returns the sorted list of available style names.
 =head1 SEE ALSO
 
 L<example.pl> in the project repository for a runnable demo.
+
+Project repository: L<https://github.com/shoorick/substitute-letters>
+
+Bug reports and other issues: L<https://github.com/shoorick/substitute-letters/issues>
 
 =cut

@@ -7,6 +7,12 @@ fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace
 
 Цифры, пробелы, `_` и прочие не-буквы не изменяются.
 
+Английская документация: [README.md](README.md)
+
+Репозиторий: <https://github.com/shoorick/substitute-letters> —
+багрепорты и другие issues приветствуются:
+<https://github.com/shoorick/substitute-letters/issues>
+
 ## Возможности
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` и `styles()`
@@ -24,7 +30,7 @@ bin/substitute-letters --style script 'Hello, World!'
 bin/substitute-letters -s fraktur route_id
 
 # или через stdin
-echo 'route_short_name' | bin/substitute-letters -s monospace
+echo mkdir folder_name | bin/substitute-letters -s monospace
 
 # список доступных стилей
 bin/substitute-letters --list
@@ -42,7 +48,7 @@ bin/substitute-letters --help
 use lib 'lib';
 use Text::UnicodeStyle qw( stylize styles );
 
-say stylize('route_id', 'monospace');   # 𝐫𝐨𝐮𝐭𝐞_𝐢𝐝
+say stylize('something_id', 'monospace');   # 𝚜𝚘𝚖𝚎𝚝𝚑𝚒𝚗𝚐_𝚒𝚍
 say join ', ', styles();
 ```
 
