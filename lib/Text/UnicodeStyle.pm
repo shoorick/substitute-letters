@@ -4,6 +4,7 @@ use warnings;
 use utf8;
 
 use Exporter 'import';
+our $VERSION = '0.01';
 our @EXPORT_OK = qw( styles stylize );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
@@ -169,6 +170,10 @@ L<example.pl> in the project repository for a runnable demo.
 Project repository: L<https://github.com/shoorick/substitute-letters>
 
 Bug reports and other issues: L<https://github.com/shoorick/substitute-letters/issues>
+
+=head1 VERSION
+
+This library version is 0.01.
 
 =head1 LICENSE
 

@@ -1,0 +1,16 @@
+# ExtUtils::MakeMaker artifacts
+Makefile
+MYMETA.yml
+MYMETA.json
+pm_to_blib
+blib/
+MANIFEST.bak
+cover_db/
+
+# distributions
+*.tar.gz
+Text-UnicodeStyle-*/
+
+# editor backups
+*~
+*.swp

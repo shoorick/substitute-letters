@@ -51,6 +51,19 @@ bin/substitute-letters --help
 Options: `-s/--style STYLE` (default `monospace`), `-l/--list`,
 `-h/-?/--help`.
 
+## Installation
+
+From this repository (no dependencies beyond core modules):
+
+```sh
+perl Makefile.PL && make && sudo make install
+# or simply:
+cpanm .
+```
+
+After installation both `Text::UnicodeStyle` and the
+`substitute-letters` script are available system-wide.
+
 ## Module usage
 
 ```perl
