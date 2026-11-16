@@ -13,13 +13,20 @@ use Text::UnicodeStyle qw( stylize styles );
 
 my $style = 'monospace';
 my $help;
+my $list;
 
 GetOptions(
     'style|s=s' => \$style,
+    'list|l'   => \$list,
     'help|h|?' => \$help,
 ) or pod2usage(2);
 
 pod2usage({ -verbose => 2, -exitval => 0 }) if $help;
+
+if ($list) {
+    say for styles();
+    exit 0;
+}
 
 my %known = map { $_ => 1 } styles();
 pod2usage("Unknown style '$style'. Available: " . join(', ', styles()))
@@ -48,6 +55,7 @@ substitute-letters - replace Latin letters with Unicode lookalikes
 
     substitute-letters [--style STYLE] STRING [STRING ...]
     echo "some text" | substitute-letters --style script
+    substitute-letters --list
     substitute-letters -h
 
 =head1 DESCRIPTION
@@ -65,8 +73,12 @@ or piped via standard input.
 
 =item B<-s>, B<--style> I<STYLE>
 
-Style to apply. One of: doublestruck, fraktur, monospace, script.
+Style to apply. See L</--list> for available styles.
 Defaults to C<monospace>.
+
+=item B<-l>, B<--list>
+
+List all available styles, one per line, and exit.
 
 =item B<-h>, B<-?>, B<--help>
 
@@ -79,6 +91,7 @@ Print this help text and exit.
     substitute-letters --style script 'Hello, World!'
     substitute-letters -s fraktur route_id
     echo mkdir folder_name | substitute-letters -s monospace
+    substitute-letters --list
 
 =head1 SEE ALSO
 
