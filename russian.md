@@ -80,3 +80,11 @@ example.pl                  # пример
 ## Лицензия
 
 [MIT](LICENSE)
+
+## Автор
+
+Александр Сапожников <shoorick@cpan.org> <http://shoorick.ru>
+
+## Support the project
+
+Если вы считаете этот проект полезным, можете поддержать разработку через [PayPal](https://paypal.me/shoorick77).
