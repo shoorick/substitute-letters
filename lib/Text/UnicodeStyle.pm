@@ -8,9 +8,12 @@ our @EXPORT_OK = qw( styles stylize );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
 my %STYLE_MODS = (
+    bold         => 'Text::UnicodeStyle::Bold',
+    bold_italic  => 'Text::UnicodeStyle::BoldItalic',
     doublestruck => 'Text::UnicodeStyle::Doublestruck',
     fraktur      => 'Text::UnicodeStyle::Fraktur',
     fullwidth    => 'Text::UnicodeStyle::Fullwidth',
+    italic       => 'Text::UnicodeStyle::Italic',
     monospace    => 'Text::UnicodeStyle::Monospace',
     script       => 'Text::UnicodeStyle::Script',
 );
