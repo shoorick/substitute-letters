@@ -8,10 +8,11 @@ our @EXPORT_OK = qw( styles stylize );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
 my %STYLE_MODS = (
+    doublestruck => 'Text::UnicodeStyle::Doublestruck',
+    fraktur      => 'Text::UnicodeStyle::Fraktur',
+    fullwidth    => 'Text::UnicodeStyle::Fullwidth',
     monospace    => 'Text::UnicodeStyle::Monospace',
     script       => 'Text::UnicodeStyle::Script',
-    fraktur      => 'Text::UnicodeStyle::Fraktur',
-    doublestruck => 'Text::UnicodeStyle::Doublestruck',
 );
 
 my %TABLES;
