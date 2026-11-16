@@ -6,12 +6,14 @@ characters from other Unicode ranges — mathematical alphanumeric symbols
 enclosed forms (circled, parenthesized, squared and negated variants),
 fullwidth, and more. For example, `ABC` → `𝙰𝙱𝙲` (monospace) or `𝒜ℬ𝒞` (script).
 
-Spaces, `_` and other non-letters are left unchanged —
-except that the `bold`, `circled`, `doublestruck`, `monospace`,
-`parenthesized`, `sans_serif` and `sans_serif_bold` styles also
-substitute digits `0-9` (except `parenthesized` has no glyph for `0`).
-The `squared`, `negative_circled` and `negative_squared` styles only
-cover uppercase letters.
+Spaces and already non-ASCII text are left unchanged —
+except that the `bold`, `circled`, `doublestruck`, `fullwidth`,
+`monospace`, `parenthesized`, `sans_serif` and `sans_serif_bold`
+styles also substitute digits `0-9` (`parenthesized` has no glyph for
+`0`), and the `fullwidth` style maps all printable ASCII punctuation
+(including `_`) to its fullwidth form. The `squared`,
+`negative_circled` and `negative_squared` styles only cover uppercase
+letters.
 
 Russian documentation: [russian.md](russian.md)
 

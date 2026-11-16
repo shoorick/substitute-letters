@@ -57,7 +57,7 @@ sub stylize {
 
     my $out = $s;
     $out =~ s{
-        ([A-Za-z0-9])
+        ([!-~])
     }{
         my $c = $1;
         if ($t->{fix} && exists $t->{fix}{$c}) {
@@ -69,8 +69,11 @@ sub stylize {
         elsif ($c ge 'a' && $c le 'z' && $t->{lower}) {
             chr($t->{lower} + ord($c) - ord('a'));
         }
-        elsif ($t->{digit}) {
+        elsif ($c ge '0' && $c le '9' && $t->{digit}) {
             chr($t->{digit} + ord($c) - ord('0'));
+        }
+        elsif ($t->{punct} && $c ge '!' && $c le '~') {
+            chr(ord($c) + $t->{punct});
         }
         else {
             $c;
@@ -103,10 +106,13 @@ from other Unicode ranges (mathematical alphanumeric symbols, etc.)
 C<stylize> returns a copy of the input string where every ASCII letter
 C<A-Z> and C<a-z> is replaced by the corresponding character of the
 requested style. In styles that define digit mappings (C<bold>,
-C<circled>, C<doublestruck>, C<monospace>, C<parenthesized>,
-C<sans_serif>, C<sans_serif_bold>) digits C<0-9> are replaced as well;
-elsewhere they are left unchanged. All other characters (underscores,
-spaces, already non-ASCII text) are left untouched.
+C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
+C<parenthesized>, C<sans_serif>, C<sans_serif_bold>) digits C<0-9>
+are replaced as well; elsewhere they are left unchanged. In the
+C<fullwidth> style all printable ASCII punctuation C<!-~> is mapped
+to its fullwidth form as well (including C<_>); in all other styles
+punctuation is left unchanged. Spaces and already non-ASCII text are
+always left untouched.
 
 Each style is defined by a base code point for uppercase and lowercase
 letters (either may be absent — e.g. C<squared>, C<negative_circled>
@@ -114,11 +120,14 @@ and C<negative_squared> only cover uppercase) plus an optional C<fix>
 table of exceptions (characters whose Unicode position does not follow
 the contiguous range). Some styles also define a C<digit> base code
 point, which enables substitution of digits 0-9 — currently
-C<bold>, C<circled>, C<doublestruck>, C<monospace>, C<parenthesized>,
-C<sans_serif> and C<sans_serif_bold>. In all other styles digits are
-left unchanged. Note that C<parenthesized> has no glyph for digit 0,
-so it stays unchanged there. Style tables live in
-L<Text::UnicodeStyle::*> modules and are loaded lazily.
+C<bold>, C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
+C<parenthesized>, C<sans_serif> and C<sans_serif_bold>. The
+C<fullwidth> style additionally defines C<punct>, an additive offset
+applied to printable ASCII characters not covered by the other keys.
+In all other styles digits and punctuation are left unchanged. Note
+that C<parenthesized> has no glyph for digit 0, so it stays unchanged
+there. Style tables live in L<Text::UnicodeStyle::*> modules and are
+loaded lazily.
 
 =head1 FUNCTIONS
 

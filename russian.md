@@ -7,10 +7,12 @@ Perl-модуль и CLI-утилита для замены латинских �
 варианты), fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace)
 или `𝒜ℬ𝒞` (script).
 
-Пробелы, `_` и прочие не-буквы не изменяются —
-кроме стилей `bold`, `circled`, `doublestruck`, `monospace`,
-`parenthesized`, `sans_serif` и `sans_serif_bold`, в которых также
-преобразуются цифры `0-9` (у `parenthesized` нет глифа для `0`).
+Пробелы и прочие не-буквы не изменяются —
+кроме стилей `bold`, `circled`, `doublestruck`, `fullwidth`,
+`monospace`, `parenthesized`, `sans_serif` и `sans_serif_bold`,
+в которых также преобразуются цифры `0-9` (у `parenthesized` нет
+глифа для `0`), а стиль `fullwidth` дополнительно переводит всю
+печатаемую ASCII-пунктуацию (включая `_`) в полноширинную форму.
 Стили `squared`, `negative_circled` и `negative_squared` покрывают
 только заглавные буквы.
 
