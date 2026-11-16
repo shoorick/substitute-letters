@@ -9,6 +9,8 @@ sub table {
         fix => {
             h => 0x210E,
         },
+        upper_greek => 0x1D6E2,
+        lower_greek => 0x1D6FC,
     };
 }
 

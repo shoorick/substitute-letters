@@ -34,6 +34,20 @@ my %STYLE_MODS = (
 
 my %TABLES;
 
+# Canonical Greek letters in the order of the mathematical alphanumeric
+# symbol slots: capitals Α-Ρ, ϴ (theta symbol), Σ-Ω; smalls α-ρ, ς
+# (final sigma), σ-ω. Slot 25 of each range is nabla/partial
+# differential, not a letter.
+my %GREEK;
+{
+    my $i = 0;
+    $GREEK{chr($_)} = ['u', $i++] for (0x391 .. 0x3A1, 0x3F4, 0x3A3 .. 0x3A9);
+    $i = 0;
+    $GREEK{chr($_)} = ['l', $i++] for (0x3B1 .. 0x3C1, 0x3C2, 0x3C3 .. 0x3C9);
+}
+
+my $GREEK_CLASS = '\x{391}-\x{3A1}\x{3A3}-\x{3A9}\x{3F4}\x{3B1}-\x{3C9}';
+
 sub _module_for {
     my ($style) = @_;
     return $STYLE_MODS{$style};
@@ -60,10 +74,15 @@ sub stylize {
 
     my $out = $s;
     $out =~ s{
-        ([!-~])
+        ([$GREEK_CLASS!-~])
     }{
         my $c = $1;
-        if ($t->{fix} && exists $t->{fix}{$c}) {
+        if (my $g = $GREEK{$c}) {
+            my ($case, $idx) = @$g;
+            my $base = $case eq 'u' ? $t->{upper_greek} : $t->{lower_greek};
+            defined $base ? chr($base + $idx) : $c;
+        }
+        elsif ($t->{fix} && exists $t->{fix}{$c}) {
             chr $t->{fix}{$c};
         }
         elsif ($c ge 'A' && $c le 'Z' && $t->{upper}) {
@@ -111,7 +130,11 @@ C<A-Z> and C<a-z> is replaced by the corresponding character of the
 requested style. In styles that define digit mappings (C<bold>,
 C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
 C<parenthesized>, C<sans_serif>, C<sans_serif_bold>, C<segmented>) digits C<0-9>
-are replaced as well; elsewhere they are left unchanged. In the
+are replaced as well; elsewhere they are left unchanged. In addition,
+Greek letters (U+0391..U+03A9, U+03F4, U+03B1..U+03C9) are substituted
+in styles that define C<upper_greek>/C<lower_greek> mappings —
+currently C<bold>, C<italic>, C<bold_italic>, C<sans_serif_bold> and
+C<sans_serif_bold_italic>. In the
 C<fullwidth> style all printable ASCII punctuation C<!-~> is mapped
 to its fullwidth form as well (including C<_>); in all other styles
 punctuation is left unchanged. Spaces and already non-ASCII text are
@@ -124,8 +147,12 @@ table of exceptions (characters whose Unicode position does not follow
 the contiguous range). Some styles also define a C<digit> base code
 point, which enables substitution of digits 0-9 — currently
 C<bold>, C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
-C<parenthesized>, C<sans_serif>, C<sans_serif_bold> and C<segmented>. The
-C<fullwidth> style additionally defines C<punct>, an additive offset
+C<parenthesized>, C<sans_serif>, C<sans_serif_bold> and C<segmented>.
+The C<upper_greek>/C<lower_greek> keys are base code points for the
+Greek letter ranges (U+0391.. and U+03B1.. inputs), currently defined
+by C<bold>, C<italic>, C<bold_italic>, C<sans_serif_bold> and
+C<sans_serif_bold_italic>. The C<fullwidth> style additionally
+defines C<punct>, an additive offset
 applied to printable ASCII characters not covered by the other keys.
 In all other styles digits and punctuation are left unchanged. Note
 that C<parenthesized> has no glyph for digit 0, so it stays unchanged

@@ -145,6 +145,20 @@ subtest 'enclosed styles base code points' => sub {
     is stylize('Z', 'negative_squared'), chr(0x1F189), 'negative_squared Z';
 };
 
+subtest 'greek letters' => sub {
+    is stylize('ΑΒ', 'bold'),
+        chr(0x1D6A8) . chr(0x1D6A9), 'bold greek capitals';
+    is stylize('α', 'italic'), chr(0x1D6FC), 'italic greek small alpha';
+    is stylize('ϴ', 'bold'),  chr(0x1D6B9), 'bold capital theta symbol (slot 17)';
+    is stylize('ς', 'italic'), chr(0x1D70D), 'italic small final sigma (slot 17)';
+    is stylize('σ', 'italic'), chr(0x1D70E), 'italic small sigma (slot 18)';
+    is stylize('Ω', 'bold'),  chr(0x1D6C0), 'bold capital omega (slot 24, not nabla)';
+    is stylize('Ω', 'monospace'), 'Ω', 'style without greek leaves letters unchanged';
+    is stylize('aΑ1', 'bold'),
+        stylize('a', 'bold') . chr(0x1D6A8) . stylize('1', 'bold'),
+        'greek mixed with latin and digits';
+};
+
 subtest 'regional_indicator' => sub {
     is stylize('A', 'regional_indicator'), chr(0x1F1E6), 'A -> RI A';
     is stylize('Z', 'regional_indicator'), chr(0x1F1FF), 'Z -> RI Z';

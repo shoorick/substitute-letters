@@ -4,6 +4,9 @@ Revision history for Perl extension Text::UnicodeStyle
     - Add regional_indicator style (U+1F1E6..U+1F1FF, caseless;
       pairs of letters form flag emoji)
     - Add segmented style (digits only, U+1FBF0..U+1FBF9)
+    - Add Greek letter substitution (upper_greek/lower_greek table
+      keys) in bold, italic, bold_italic, sans_serif_bold and
+      sans_serif_bold_italic styles
 
 0.01  2026-11-16
     - Initial release

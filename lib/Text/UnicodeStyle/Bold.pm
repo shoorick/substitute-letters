@@ -7,6 +7,8 @@ sub table {
         upper => 0x1D400,
         lower => 0x1D41A,
         digit => 0x1D7CE,
+        upper_greek => 0x1D6A8,
+        lower_greek => 0x1D6C2,
     };
 }
 

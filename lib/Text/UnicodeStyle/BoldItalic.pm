@@ -6,6 +6,8 @@ sub table {
     return {
         upper => 0x1D468,
         lower => 0x1D482,
+        upper_greek => 0x1D71C,
+        lower_greek => 0x1D736,
     };
 }
 

@@ -15,7 +15,9 @@ except that the `bold`, `circled`, `doublestruck`, `fullwidth`,
 no glyph for `0`), and the `fullwidth` style maps all printable ASCII
 punctuation (including `_`) to its fullwidth form. The `segmented`
 style covers digits only; the `squared`, `negative_circled` and
-`negative_squared` styles only cover uppercase letters.
+`negative_squared` styles only cover uppercase letters. Greek letters
+(U+0391..U+03C9) are also substituted in the `bold`, `italic`,
+`bold_italic`, `sans_serif_bold` and `sans_serif_bold_italic` styles.
 
 Russian documentation: [russian.md](russian.md)
 
