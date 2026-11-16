@@ -21,7 +21,10 @@ Perl-модуль и CLI-утилита для замены латинских �
 преобразуются в стилях `bold`, `italic`, `bold_italic`,
 `sans_serif_bold` и `sans_serif_bold_italic`.
 
-Английская документация: [README.md](README.md)
+Документация на английском языке: [README.md](README.md)
+
+Пример вывода:
+![Пример вывода](chart.png)
 
 Репозиторий: <https://github.com/shoorick/substitute-letters> —
 багрепорты и другие issues приветствуются:

@@ -23,6 +23,9 @@ such forms; the `squared`, `negative_circled` and
 
 Russian documentation: [russian.md](russian.md)
 
+Output example:
+![Output example](chart.png)
+
 Repository: <https://github.com/shoorick/substitute-letters> —
 bug reports and other issues are welcome at
 <https://github.com/shoorick/substitute-letters/issues>
