@@ -52,17 +52,23 @@ sub stylize {
 
     my $out = $s;
     $out =~ s{
-        ([A-Za-z])
+        ([A-Za-z0-9])
     }{
         my $c = $1;
         if ($t->{fix} && exists $t->{fix}{$c}) {
             chr $t->{fix}{$c};
         }
-        elsif ($c le 'Z') {
+        elsif ($c ge 'A' && $c le 'Z') {
             chr($t->{upper} + ord($c) - ord('A'));
         }
-        else {
+        elsif ($c ge 'a' && $c le 'z') {
             chr($t->{lower} + ord($c) - ord('a'));
+        }
+        elsif ($t->{digit}) {
+            chr($t->{digit} + ord($c) - ord('0'));
+        }
+        else {
+            $c;
         }
     }gex;
 
@@ -91,13 +97,20 @@ from other Unicode ranges (mathematical alphanumeric symbols, etc.)
 
 C<stylize> returns a copy of the input string where every ASCII letter
 C<A-Z> and C<a-z> is replaced by the corresponding character of the
-requested style. All other characters (digits, underscores, spaces,
+requested style. In styles that define digit mappings
+(C<bold>, C<doublestruck>, C<monospace>, C<sans_serif>,
+C<sans_serif_bold>) digits C<0-9> are replaced as well; elsewhere they
+are left unchanged. All other characters (underscores, spaces,
 already non-ASCII text) are left untouched.
 
 Each style is defined by a base code point for uppercase and lowercase
 letters plus an optional C<fix> table of exceptions (letters whose
-Unicode position does not follow the contiguous range). Style tables
-live in L<Text::UnicodeStyle::*> modules and are loaded lazily.
+Unicode position does not follow the contiguous range). Some styles also
+define a C<digit> base code point, which enables substitution of digits
+0-9 — currently C<bold>, C<doublestruck>, C<monospace>, C<sans_serif>
+and C<sans_serif_bold>. In all other styles digits are left unchanged.
+Style tables live in L<Text::UnicodeStyle::*> modules and are loaded
+lazily.
 
 =head1 FUNCTIONS
 

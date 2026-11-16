@@ -5,7 +5,9 @@ characters from other Unicode ranges — mathematical alphanumeric symbols
 (monospace, script, fraktur, doublestruck, sans-serif and their variants),
 fullwidth, and more. For example, `ABC` → `𝙰𝙱𝙲` (monospace) or `𝒜ℬ𝒞` (script).
 
-Digits, spaces, `_` and other non-letters are left unchanged.
+Digits, spaces, `_` and other non-letters are left unchanged —
+except that the `bold`, `doublestruck`, `monospace`, `sans_serif` and
+`sans_serif_bold` styles also substitute digits `0-9`.
 
 Russian documentation: [russian.md](russian.md)
 

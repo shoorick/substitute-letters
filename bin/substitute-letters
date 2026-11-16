@@ -62,7 +62,10 @@ substitute-letters - replace Latin letters with Unicode lookalikes
 
 Replaces every ASCII letter in the input with the corresponding
 character from the requested Unicode style (mathematical alphanumeric
-symbols and similar ranges). Non-letter characters are left unchanged.
+symbols and similar ranges). In the styles C<bold>, C<doublestruck>,
+C<monospace>, C<sans_serif> and C<sans_serif_bold> digits C<0-9> are
+substituted as well; in all other styles they are left unchanged.
+Other non-letter characters are never modified.
 
 The input may be given as command-line arguments (joined with spaces)
 or piped via standard input.

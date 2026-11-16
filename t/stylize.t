@@ -28,10 +28,37 @@ subtest 'stylize() argument handling' => sub {
 
 subtest 'non-letters are preserved' => sub {
     for my $style (styles()) {
-        is stylize('a1_ Z!', $style),
-            stylize('a', $style) . '1_ ' . stylize('Z', $style) . '!',
-            "$style: digits, underscore, space and punctuation untouched";
+        is stylize('a_ Z!', $style),
+            stylize('a', $style) . '_ ' . stylize('Z', $style) . '!',
+            "$style: underscore, space and punctuation untouched";
     }
+};
+
+my %DIGIT_STYLES = map { $_ => 1 } qw(
+    bold doublestruck monospace sans_serif sans_serif_bold
+);
+
+subtest 'digits' => sub {
+    for my $style (styles()) {
+        my $out = stylize('a0b9', $style);
+        if ($DIGIT_STYLES{$style}) {
+            unlike $out, qr/[0-9]/, "$style: digits are substituted";
+            is length($out), 4, "$style: length preserved";
+        }
+        else {
+            like $out, qr/[0-9]/, "$style: digits are left unchanged";
+        }
+    }
+};
+
+subtest 'digit base code points' => sub {
+    is stylize('0', 'bold'),          chr(0x1D7CE), 'bold 0';
+    is stylize('9', 'bold'),          chr(0x1D7D7), 'bold 9';
+    is stylize('0', 'doublestruck'),  chr(0x1D7D8), 'doublestruck 0';
+    is stylize('0', 'sans_serif'),    chr(0x1D7E2), 'sans_serif 0';
+    is stylize('0', 'sans_serif_bold'), chr(0x1D7EC), 'sans_serif_bold 0';
+    is stylize('0', 'monospace'),     chr(0x1D7F6), 'monospace 0';
+    is stylize('9', 'monospace'),     chr(0x1D7FF), 'monospace 9';
 };
 
 subtest 'every style maps the full alphabet to non-ASCII' => sub {

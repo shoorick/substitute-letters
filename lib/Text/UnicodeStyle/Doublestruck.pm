@@ -6,6 +6,7 @@ sub table {
     return {
         upper => 0x1D538,
         lower => 0x1D552,
+        digit => 0x1D7D8,
         fix => {
             C => 0x2102,
             H => 0x210D,

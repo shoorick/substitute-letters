@@ -5,7 +5,9 @@ Perl-модуль и CLI-утилита для замены латинских �
 (monospace, script, fraktur, doublestruck, sans-serif и их начертания),
 fullwidth и другие. Например, `ABC` → `𝙰𝙱𝙲` (monospace) или `𝒜ℬ𝒞` (script).
 
-Цифры, пробелы, `_` и прочие не-буквы не изменяются.
+Цифры, пробелы, `_` и прочие не-буквы не изменяются —
+кроме стилей `bold`, `doublestruck`, `monospace`, `sans_serif` и
+`sans_serif_bold`, в которых также преобразуются цифры `0-9`.
 
 Английская документация: [README.md](README.md)
 
