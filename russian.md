@@ -15,8 +15,9 @@ Perl-модуль и CLI-утилита для замены латинских �
 `parenthesized` нет глифа для `0`), а стиль `fullwidth`
 дополнительно переводит всю печатаемую ASCII-пунктуацию (включая
 `_`) в полноширинную форму. Стиль `segmented` покрывает только цифры;
-стили `squared`, `negative_circled` и `negative_squared` — только
-заглавные буквы. Греческие буквы (U+0391..U+03C9) также
+стили `subscript` и `superscript` — цифры, знаки `+ - = ( )` и только
+те буквы, для которых такие формы существуют; стили `squared`,
+`negative_circled` и `negative_squared` — только заглавные буквы. Греческие буквы (U+0391..U+03C9) также
 преобразуются в стилях `bold`, `italic`, `bold_italic`,
 `sans_serif_bold` и `sans_serif_bold_italic`.
 
@@ -30,12 +31,12 @@ Perl-модуль и CLI-утилита для замены латинских �
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` и `styles()`
 - `bin/substitute-letters` — CLI-обёртка с `Getopt::Long`
-- 21 стиль: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+- 23 стиля: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
   `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
   `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
   `regional_indicator`, `sans_serif`, `sans_serif_bold`,
   `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `segmented`,
-  `squared`
+  `squared`, `subscript`, `superscript`
 
 ## Использование CLI
 

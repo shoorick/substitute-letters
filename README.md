@@ -14,7 +14,9 @@ except that the `bold`, `circled`, `doublestruck`, `fullwidth`,
 `segmented` styles also substitute digits `0-9` (`parenthesized` has
 no glyph for `0`), and the `fullwidth` style maps all printable ASCII
 punctuation (including `_`) to its fullwidth form. The `segmented`
-style covers digits only; the `squared`, `negative_circled` and
+style covers digits only; the `subscript` and `superscript` styles
+cover digits, the signs `+ - = ( )` and only those letters that have
+such forms; the `squared`, `negative_circled` and
 `negative_squared` styles only cover uppercase letters. Greek letters
 (U+0391..U+03C9) are also substituted in the `bold`, `italic`,
 `bold_italic`, `sans_serif_bold` and `sans_serif_bold_italic` styles.
@@ -29,12 +31,12 @@ bug reports and other issues are welcome at
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` and `styles()`
 - `bin/substitute-letters` — CLI wrapper built on `Getopt::Long`
-- 21 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+- 23 styles: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
   `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
   `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
   `regional_indicator`, `sans_serif`, `sans_serif_bold`,
   `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `segmented`,
-  `squared`
+  `squared`, `subscript`, `superscript`
 
 ## CLI usage
 

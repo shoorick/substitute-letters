@@ -11,7 +11,7 @@ my @STYLES = qw(
     circled doublestruck fraktur fullwidth italic monospace
     negative_circled negative_squared parenthesized regional_indicator
     sans_serif sans_serif_bold sans_serif_bold_italic sans_serif_italic
-    script segmented squared
+    script segmented squared subscript superscript
 );
 
 subtest 'styles()' => sub {
@@ -52,7 +52,7 @@ subtest 'punctuation (fullwidth only)' => sub {
 
 my %DIGIT_STYLES = map { $_ => 1 } qw(
     bold circled doublestruck fullwidth monospace parenthesized
-    sans_serif sans_serif_bold segmented
+    sans_serif sans_serif_bold segmented subscript superscript
 );
 
 subtest 'digits' => sub {
@@ -101,6 +101,8 @@ my %NO_LOWER = map { $_ => 1 } qw(
 
 my %NO_LETTERS = map { $_ => 1 } qw( segmented );
 
+my %PARTIAL = map { $_ => 1 } qw( subscript superscript );
+
 subtest 'every style maps the full alphabet to non-ASCII' => sub {
     my $lower = join '', 'a' .. 'z';
     my $upper = join '', 'A' .. 'Z';
@@ -113,6 +115,15 @@ subtest 'every style maps the full alphabet to non-ASCII' => sub {
         if ($NO_LETTERS{$style}) {
             is $out_u, $upper, "$style: no letter ranges, uppercase unchanged";
             is $out_l, $lower, "$style: no letter ranges, lowercase unchanged";
+        }
+        elsif ($PARTIAL{$style}) {
+            my @in = split //, $upper . $lower;
+            my @o  = split //, $out_u . $out_l;
+            my $ok = 1;
+            for my $i (0 .. $#in) {
+                $ok = 0 if ord($o[$i]) != ord($in[$i]) && ord($o[$i]) < 128;
+            }
+            ok $ok, "$style: substitutions only produce non-ASCII";
         }
         else {
             unlike $out_u, qr/[A-Z]/, "$style: no ASCII uppercase remains";
@@ -143,6 +154,31 @@ subtest 'enclosed styles base code points' => sub {
     is stylize('Z', 'squared'),          chr(0x1F149), 'squared Z';
     is stylize('A', 'negative_circled'), chr(0x1F150), 'negative_circled A';
     is stylize('Z', 'negative_squared'), chr(0x1F189), 'negative_squared Z';
+};
+
+subtest 'superscript' => sub {
+    is stylize('10', 'superscript'), chr(0x00B9) . chr(0x2070),
+        'superscript digits 1 and 0 (non-contiguous)';
+    is stylize('5', 'superscript'), chr(0x2075), 'superscript 5';
+    is stylize('a+b=c', 'superscript'),
+        chr(0x1D43) . chr(0x207A) . chr(0x1D47) . chr(0x207C) . 'c',
+        'superscript letters and signs, c has no form';
+    is stylize('(x)', 'superscript'),
+        chr(0x207D) . 'x' . chr(0x207E),
+        'superscript parentheses, x has no form';
+    is stylize('Q', 'superscript'), 'Q', 'letters without forms unchanged';
+};
+
+subtest 'subscript' => sub {
+    is stylize('H2O', 'subscript'),
+        'H' . chr(0x2082) . 'O',
+        'subscript digit, uppercase letters unchanged';
+    is stylize('a-e', 'subscript'),
+        chr(0x2090) . chr(0x208B) . chr(0x2091),
+        'subscript letters and minus';
+    is stylize('xyz', 'subscript'),
+        chr(0x2093) . 'yz',
+        'only existing subscript letters mapped';
 };
 
 subtest 'greek letters' => sub {

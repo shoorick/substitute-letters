@@ -7,6 +7,8 @@ Revision history for Perl extension Text::UnicodeStyle
     - Add Greek letter substitution (upper_greek/lower_greek table
       keys) in bold, italic, bold_italic, sans_serif_bold and
       sans_serif_bold_italic styles
+    - Add subscript and superscript styles (digits, +- = () signs and
+      the letters that have such forms)
 
 0.01  2026-11-16
     - Initial release

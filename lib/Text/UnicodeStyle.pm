@@ -30,6 +30,8 @@ my %STYLE_MODS = (
     script                  => 'Text::UnicodeStyle::Script',
     segmented               => 'Text::UnicodeStyle::Segmented',
     squared                 => 'Text::UnicodeStyle::Squared',
+    subscript               => 'Text::UnicodeStyle::Subscript',
+    superscript             => 'Text::UnicodeStyle::Superscript',
 );
 
 my %TABLES;
@@ -192,6 +194,9 @@ e.g. C<US> -> flag of the United States)
 =item script
 
 =item segmented (digits only)
+
+=item subscript, superscript (partial coverage of digits, signs
+C<+ - = ( )> and letters)
 
 =item squared (uppercase only)
 

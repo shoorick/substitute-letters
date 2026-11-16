@@ -25,6 +25,8 @@ lib/Text/UnicodeStyle/SansSerifBoldItalic.pm
 lib/Text/UnicodeStyle/SansSerifItalic.pm
 lib/Text/UnicodeStyle/Script.pm
 lib/Text/UnicodeStyle/Segmented.pm
+lib/Text/UnicodeStyle/Subscript.pm
+lib/Text/UnicodeStyle/Superscript.pm
 lib/Text/UnicodeStyle/Squared.pm
 russian.md
 t/cli.t
