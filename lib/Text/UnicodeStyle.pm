@@ -28,6 +28,7 @@ my %STYLE_MODS = (
     sans_serif_bold_italic  => 'Text::UnicodeStyle::SansSerifBoldItalic',
     sans_serif_italic       => 'Text::UnicodeStyle::SansSerifItalic',
     script                  => 'Text::UnicodeStyle::Script',
+    segmented               => 'Text::UnicodeStyle::Segmented',
     squared                 => 'Text::UnicodeStyle::Squared',
 );
 
@@ -109,7 +110,7 @@ C<stylize> returns a copy of the input string where every ASCII letter
 C<A-Z> and C<a-z> is replaced by the corresponding character of the
 requested style. In styles that define digit mappings (C<bold>,
 C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
-C<parenthesized>, C<sans_serif>, C<sans_serif_bold>) digits C<0-9>
+C<parenthesized>, C<sans_serif>, C<sans_serif_bold>, C<segmented>) digits C<0-9>
 are replaced as well; elsewhere they are left unchanged. In the
 C<fullwidth> style all printable ASCII punctuation C<!-~> is mapped
 to its fullwidth form as well (including C<_>); in all other styles
@@ -123,7 +124,7 @@ table of exceptions (characters whose Unicode position does not follow
 the contiguous range). Some styles also define a C<digit> base code
 point, which enables substitution of digits 0-9 — currently
 C<bold>, C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
-C<parenthesized>, C<sans_serif> and C<sans_serif_bold>. The
+C<parenthesized>, C<sans_serif>, C<sans_serif_bold> and C<segmented>. The
 C<fullwidth> style additionally defines C<punct>, an additive offset
 applied to printable ASCII characters not covered by the other keys.
 In all other styles digits and punctuation are left unchanged. Note
@@ -162,6 +163,8 @@ e.g. C<US> -> flag of the United States)
 =item sans_serif, sans_serif_bold, sans_serif_bold_italic, sans_serif_italic
 
 =item script
+
+=item segmented (digits only)
 
 =item squared (uppercase only)
 

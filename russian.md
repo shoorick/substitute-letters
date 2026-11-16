@@ -10,12 +10,13 @@ Perl-модуль и CLI-утилита для замены латинских �
 
 Пробелы и прочие не-буквы не изменяются —
 кроме стилей `bold`, `circled`, `doublestruck`, `fullwidth`,
-`monospace`, `parenthesized`, `sans_serif` и `sans_serif_bold`,
-в которых также преобразуются цифры `0-9` (у `parenthesized` нет
-глифа для `0`), а стиль `fullwidth` дополнительно переводит всю
-печатаемую ASCII-пунктуацию (включая `_`) в полноширинную форму.
-Стили `squared`, `negative_circled` и `negative_squared` покрывают
-только заглавные буквы.
+`monospace`, `parenthesized`, `sans_serif`, `sans_serif_bold` и
+`segmented`, в которых также преобразуются цифры `0-9` (у
+`parenthesized` нет глифа для `0`), а стиль `fullwidth`
+дополнительно переводит всю печатаемую ASCII-пунктуацию (включая
+`_`) в полноширинную форму. Стиль `segmented` покрывает только цифры;
+стили `squared`, `negative_circled` и `negative_squared` — только
+заглавные буквы.
 
 Английская документация: [README.md](README.md)
 
@@ -27,11 +28,12 @@ Perl-модуль и CLI-утилита для замены латинских �
 
 - `Text::UnicodeStyle` — API: `stylize($string, $style)` и `styles()`
 - `bin/substitute-letters` — CLI-обёртка с `Getopt::Long`
-- 20 стилей: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
+- 21 стиль: `bold`, `bold_fraktur`, `bold_italic`, `bold_script`,
   `circled`, `doublestruck`, `fraktur`, `fullwidth`, `italic`,
   `monospace`, `negative_circled`, `negative_squared`, `parenthesized`,
   `regional_indicator`, `sans_serif`, `sans_serif_bold`,
-  `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `squared`
+  `sans_serif_bold_italic`, `sans_serif_italic`, `script`, `segmented`,
+  `squared`
 
 ## Использование CLI
 

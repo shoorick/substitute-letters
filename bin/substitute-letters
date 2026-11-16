@@ -64,7 +64,7 @@ Replaces every ASCII letter in the input with the corresponding
 character from the requested Unicode style (mathematical alphanumeric
 symbols, enclosed forms and similar ranges). In the styles C<bold>,
 C<circled>, C<doublestruck>, C<fullwidth>, C<monospace>,
-C<parenthesized>, C<sans_serif> and C<sans_serif_bold> digits C<0-9>
+C<parenthesized>, C<sans_serif>, C<sans_serif_bold> and C<segmented> digits C<0-9>
 are substituted as well (except C<parenthesized> has no glyph for 0).
 The C<fullwidth> style also maps all printable ASCII punctuation to
 its fullwidth form, including C<_>. The styles C<squared>,

@@ -11,7 +11,7 @@ my @STYLES = qw(
     circled doublestruck fraktur fullwidth italic monospace
     negative_circled negative_squared parenthesized regional_indicator
     sans_serif sans_serif_bold sans_serif_bold_italic sans_serif_italic
-    script squared
+    script segmented squared
 );
 
 subtest 'styles()' => sub {
@@ -52,7 +52,7 @@ subtest 'punctuation (fullwidth only)' => sub {
 
 my %DIGIT_STYLES = map { $_ => 1 } qw(
     bold circled doublestruck fullwidth monospace parenthesized
-    sans_serif sans_serif_bold
+    sans_serif sans_serif_bold segmented
 );
 
 subtest 'digits' => sub {
@@ -83,6 +83,8 @@ subtest 'digit base code points' => sub {
     is stylize('0', 'circled'),       chr(0x24EA),  'circled 0 (separate range)';
     is stylize('1', 'parenthesized'), chr(0x2474),  'parenthesized 1';
     is stylize('9', 'parenthesized'), chr(0x247C),  'parenthesized 9';
+    is stylize('0', 'segmented'),      chr(0x1FBF0), 'segmented 0';
+    is stylize('9', 'segmented'),      chr(0x1FBF9), 'segmented 9';
 };
 
 subtest 'parenthesized has no digit zero' => sub {
@@ -97,6 +99,8 @@ my %NO_LOWER = map { $_ => 1 } qw(
     negative_circled negative_squared squared
 );
 
+my %NO_LETTERS = map { $_ => 1 } qw( segmented );
+
 subtest 'every style maps the full alphabet to non-ASCII' => sub {
     my $lower = join '', 'a' .. 'z';
     my $upper = join '', 'A' .. 'Z';
@@ -105,13 +109,19 @@ subtest 'every style maps the full alphabet to non-ASCII' => sub {
         my $out_l = stylize($lower, $style);
         my $out_u = stylize($upper, $style);
         is length($out_u), 26, "$style: uppercase length preserved";
-        unlike $out_u, qr/[A-Z]/, "$style: no ASCII uppercase remains";
         is length($out_l), 26, "$style: lowercase length preserved";
-        if ($NO_LOWER{$style}) {
-            is $out_l, $lower, "$style: no lowercase range, letters unchanged";
+        if ($NO_LETTERS{$style}) {
+            is $out_u, $upper, "$style: no letter ranges, uppercase unchanged";
+            is $out_l, $lower, "$style: no letter ranges, lowercase unchanged";
         }
         else {
-            unlike $out_l, qr/[a-z]/, "$style: no ASCII lowercase remains";
+            unlike $out_u, qr/[A-Z]/, "$style: no ASCII uppercase remains";
+            if ($NO_LOWER{$style}) {
+                is $out_l, $lower, "$style: no lowercase range, letters unchanged";
+            }
+            else {
+                unlike $out_l, qr/[a-z]/, "$style: no ASCII lowercase remains";
+            }
         }
     }
 };
